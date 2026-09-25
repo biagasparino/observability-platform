@@ -1,0 +1,35 @@
+<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#334155"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="900" height="260" fill="#0b1220"/>
+  <text x="450" y="30" text-anchor="middle" fill="#f1f5f9" font-size="18" font-weight="700">Incident Investigation Flow</text>
+
+  <g font-size="13" fill="white">
+    <rect x="20"  y="90" width="190" height="70" rx="10" fill="#166534"/>
+    <text x="115" y="118" text-anchor="middle">Metrics</text>
+    <text x="115" y="136" text-anchor="middle" font-size="10" fill="#bbf7d0">notice something is wrong</text>
+
+    <rect x="250" y="90" width="190" height="70" rx="10" fill="#92400e"/>
+    <text x="345" y="118" text-anchor="middle">Logs</text>
+    <text x="345" y="136" text-anchor="middle" font-size="10" fill="#fde68a">explain what happened</text>
+
+    <rect x="480" y="90" width="190" height="70" rx="10" fill="#5b21b6"/>
+    <text x="575" y="118" text-anchor="middle">Traces</text>
+    <text x="575" y="136" text-anchor="middle" font-size="10" fill="#ddd6fe">pinpoint exactly where</text>
+
+    <rect x="710" y="90" width="170" height="70" rx="10" fill="#b45309"/>
+    <text x="795" y="118" text-anchor="middle">Root cause</text>
+    <text x="795" y="136" text-anchor="middle" font-size="10" fill="#fef3c7">fix + verify recovery</text>
+  </g>
+
+  <line x1="210" y1="125" x2="250" y2="125" stroke="#334155" stroke-width="2" marker-end="url(#arrow3)"/>
+  <line x1="440" y1="125" x2="480" y2="125" stroke="#334155" stroke-width="2" marker-end="url(#arrow3)"/>
+  <line x1="670" y1="125" x2="710" y2="125" stroke="#334155" stroke-width="2" marker-end="url(#arrow3)"/>
+
+  <text x="450" y="210" text-anchor="middle" fill="#94a3b8" font-size="11">
+    Loki's derived field turns a log line's trace_id into a one-click jump into the matching Tempo trace
+  </text>
+</svg>

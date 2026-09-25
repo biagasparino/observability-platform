@@ -1,0 +1,22 @@
+node_modules/
+npm-debug.log*
+dist/
+coverage/
+
+.env
+.env.*
+!.env.example
+
+# Data volumes if run locally without docker named volumes
+grafana-data/
+prometheus-data/
+loki-data/
+tempo-data/
+
+*.log
+logs/
+
+.DS_Store
+.idea/
+.vscode/
+*.swp

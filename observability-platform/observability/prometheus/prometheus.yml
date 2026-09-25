@@ -1,0 +1,39 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: ["alertmanager:9093"]
+
+rule_files:
+  - "alerts.yml"
+
+scrape_configs:
+  # The application itself: RED metrics + Node.js process (app-level utilization)
+  - job_name: "checkout-api"
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["app:3000"]
+        labels: { service: "checkout-api" }
+
+  # Host-level USE metrics: CPU, memory, disk, network
+  - job_name: "node-exporter"
+    static_configs:
+      - targets: ["node-exporter:9100"]
+
+  # Container-level USE metrics: per-container CPU/memory/network, restart counts
+  - job_name: "cadvisor"
+    static_configs:
+      - targets: ["cadvisor:8080"]
+
+  # PostgreSQL: connections in use, transaction rate, replication lag, etc.
+  - job_name: "postgres-exporter"
+    static_configs:
+      - targets: ["postgres-exporter:9187"]
+
+  # Prometheus scraping itself, useful as a sanity check
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]

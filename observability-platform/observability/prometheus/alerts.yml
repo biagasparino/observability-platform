@@ -1,0 +1,80 @@
+groups:
+  - name: red-signals
+    rules:
+      - alert: HighHttp5xxRate
+        expr: |
+          sum(rate(http_requests_total{status_code=~"5.."}[5m]))
+          /
+          sum(rate(http_requests_total[5m])) > 0.05
+        for: 2m
+        labels: { severity: critical }
+        annotations:
+          summary: "High rate of HTTP 5xx responses"
+          description: "More than 5% of requests have returned 5xx over the last 5 minutes."
+
+      - alert: HighRequestLatencyP95
+        expr: |
+          histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 1
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "p95 latency above 1s"
+          description: "95th percentile request duration has been above 1 second for 5 minutes."
+
+      - alert: LowThroughputAnomaly
+        expr: |
+          sum(rate(http_requests_total[5m])) < 0.1
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "Unusually low request throughput"
+          description: "Request rate has dropped close to zero — could indicate an upstream outage or routing issue."
+
+  - name: use-signals
+    rules:
+      - alert: HighCPUUtilization
+        expr: |
+          100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 85
+        for: 5m
+        labels: { severity: warning }
+        annotations:
+          summary: "High CPU utilization"
+          description: "CPU utilization has been above 85% for 5 minutes on {{ $labels.instance }}."
+
+      - alert: HighMemoryUtilization
+        expr: |
+          (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 90
+        for: 5m
+        labels: { severity: critical }
+        annotations:
+          summary: "High memory utilization"
+          description: "Memory utilization has been above 90% for 5 minutes on {{ $labels.instance }}."
+
+      - alert: DiskSpaceRunningOut
+        expr: |
+          (1 - (node_filesystem_avail_bytes{fstype!~"tmpfs|overlay"} / node_filesystem_size_bytes{fstype!~"tmpfs|overlay"})) * 100 > 85
+        for: 10m
+        labels: { severity: warning }
+        annotations:
+          summary: "Disk space running low"
+          description: "Filesystem usage above 85% on {{ $labels.instance }} ({{ $labels.mountpoint }})."
+
+      - alert: DBConnectionPoolSaturated
+        expr: |
+          db_pool_connections_in_use / db_pool_connections_max > 0.8
+        for: 2m
+        labels: { severity: critical }
+        annotations:
+          summary: "Database connection pool nearly exhausted"
+          description: "More than 80% of the connection pool is checked out — new requests may start queuing or timing out."
+
+      - alert: ContainerRestartingFrequently
+        expr: |
+          increase(container_start_time_seconds[15m]) > 2
+        for: 0m
+        labels: { severity: warning }
+        annotations:
+          summary: "Container restarting frequently"
+          description: >
+            {{ $labels.name }} has restarted more than twice in 15 minutes.
+            In Kubernetes, wire this to kube_pod_container_status_restarts_total instead.
