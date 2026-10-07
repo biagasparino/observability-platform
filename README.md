@@ -8,11 +8,11 @@
 
 [![Portuguese Version](https://img.shields.io/badge/🇧🇷_Read_in_Portuguese-E8D5B7?style=for-the-badge&logoColor=594A3C)](README.pt-br.md)
 
-This isn't "I installed Grafana." It's a small instrumented service wired to a full observability stack: metrics, logs, and traces, correlated with each other, plus **real, reproducible failures you can trigger on demand** and a runbook that walks through detecting and investigating each one, end to end.
+This is a small instrumented service wired to a full observability stack: metrics, logs, and traces, correlated with each other, plus **real, reproducible failures you can trigger on demand** and a runbook that walks through detecting and investigating each one, end to end.
 
 ## What this project demonstrates
 
-Job postings today ask for hands-on experience with **metrics, logs, traces, APM, dashboards, and alerting**, not just "used Grafana once." This repository proves that: a working RED dashboard for the application, a working USE dashboard for infrastructure, alerting rules that actually fire, and a documented investigation flow that goes from a dashboard spike to the exact root cause using logs and distributed traces.
+A working RED dashboard for the application, a working USE dashboard for infrastructure, alerting rules that actually fire, and a documented investigation flow that goes from a dashboard spike to the exact root cause using logs and distributed traces.
 
 ## Architecture
 
