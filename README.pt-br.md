@@ -8,11 +8,11 @@
 
 [![English Version](https://img.shields.io/badge/🇺🇸_Read_in_English-E8D5B7?style=for-the-badge&logoColor=594A3C)](README.md)
 
-Isso não é "instalei o Grafana". É um serviço instrumentado de verdade, conectado a uma stack completa de observabilidade — métricas, logs e traces, correlacionados entre si — mais **falhas reais e reproduzíveis que você pode disparar sob demanda**, com um runbook que guia a detecção e investigação de cada uma, de ponta a ponta.
+Isso é um serviço instrumentado de verdade, conectado a uma stack completa de observabilidade — métricas, logs e traces, correlacionados entre si — mais **falhas reais e reproduzíveis que você pode disparar sob demanda**, com um runbook que guia a detecção e investigação de cada uma, de ponta a ponta.
 
 ## O que este projeto prova
 
-As vagas de hoje pedem experiência prática com **métricas, logs, traces, APM, dashboards e alertas** — não só "usei o Grafana uma vez". Este repositório prova isso: um dashboard RED funcional para a aplicação, um dashboard USE funcional para a infraestrutura, regras de alerta que realmente disparam, e um fluxo de investigação documentado que vai de um pico no dashboard até a causa raiz exata, usando logs e traces distribuídos.
+Um dashboard RED funcional para a aplicação, um dashboard USE funcional para a infraestrutura, regras de alerta que realmente disparam, e um fluxo de investigação documentado que vai de um pico no dashboard até a causa raiz exata, usando logs e traces distribuídos.
 
 ## Arquitetura
 
